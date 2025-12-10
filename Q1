@@ -1,0 +1,41 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# TODO: Implement the sigmoid function
+def sigmoid(x):
+    """
+    Compute the sigmoid function for input x
+
+    Parameters:
+    x: input value or array
+
+    Returns:
+    sigmoid of x
+    """
+    return 1 / (1 + np.exp(-x))
+    pass
+
+# Generate x values from -10 to 10
+x_values = np.linspace(-10,10,100)
+
+# TODO: Compute sigmoid values for x_values
+y_values = sigmoid(x_values)
+
+# TODO: Create a plot of the sigmoid function
+plt.figure(figsize=(10,6))
+# Your plotting code here
+plt.plot(x_values,y_values,linewidth=2,)
+plt.title('Sigmoid Function',fontsize=14,fontweight='bold')
+plt.xlabel('x')
+plt.ylabel('sigmoid(x)')
+plt.grid(True,alpha=0.3)
+plt.show()
+
+# TODO: Test your implementation with specific values
+test_values = [-5,-2,0,2,5]
+print("Sigmoid function test:")
+for val in test_values:
+    # Print sigmoid of each test value
+    result = sigmoid(val)
+    print(f"sigmoid({val}) = {result:.6f}")
+    pass
