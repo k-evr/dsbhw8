@@ -1,0 +1,55 @@
+# Sample feature values and model coefficients
+feature1 = 1.5
+feature2 = -0.8
+bias = 0.5
+coef1 = 0.8
+coef2 = -0.3
+
+# TODO: Calculate the linear combination z
+z = bias + coef1 * feature1 + coef2 * feature2
+
+# TODO: Use sigmoid to calculate probability of class 1
+probability = sigmoid(z)
+
+print(f"Linear combination z: {z:.4f}")
+print(f"Probability of class 1: {probability:.4f}")
+
+# TODO: Based on a threshold of 0.5, make a prediction
+prediction = 1 if probability >= 0.5 else 0
+print(f"Predicted class: {prediction}")
+
+# TODO: Create a function that takes features, coefficients, and bias
+# and returns both probability and prediction
+def predict_probability(features, coefficients, bias, threshold=0.5):
+    """
+    Calculate probability and prediction using sigmoid function
+    """
+    # Calculate linear combination z = bias + sum(coef_i * feature_i)
+    z = bias
+    for feature, coef in zip(features, coefficients):
+        z += feature * coef
+    
+    # Calculate probability using sigmoid
+    probability = sigmoid(z)
+    
+    # Make prediction based on threshold
+    prediction = 1 if probability >= threshold else 0
+    
+    return probability, prediction
+
+# Test the function
+test_features = [1.5, -0.8]
+test_coefficients = [0.8, -0.3]
+test_bias = 0.5
+
+prob, pred = predict_probability(test_features, test_coefficients, test_bias)
+print(f"\nTest - Probability: {prob:.4f}, Prediction: {pred}")
+
+
+
+
+Linear combination z: 1.9400
+Probability of class 1: 0.8744
+Predicted class: 1
+
+Test - Probability: 0.8744, Prediction: 1
