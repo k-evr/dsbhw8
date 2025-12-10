@@ -1,0 +1,44 @@
+# Sample true labels and predictions
+y_true = [0, 1, 0, 1, 1, 0, 1, 0, 0, 1]
+y_pred = [0, 1, 1, 1, 0, 0, 1, 0, 1, 1]
+
+# TODO: Calculate TP, TN, FP, FN from scratch
+def calculate_confusion_matrix(y_true, y_pred):
+    """
+    Calculate confusion matrix components
+    """
+    TP = TN = FP = FN = 0
+    for true, pred in zip(y_true, y_pred):
+        if true == 1 and pred == 1:
+            TP += 1  # True Positive
+        elif true == 0 and pred == 0:
+            TN += 1  # True Negative
+        elif true == 0 and pred == 1:
+            FP += 1  # False Positive
+        elif true == 1 and pred == 0:
+            FN += 1  # False Negative
+    
+    return TP, TN, FP, FN
+
+# TODO: Test your function
+TP, TN, FP, FN = calculate_confusion_matrix(y_true, y_pred)
+
+print("Confusion Matrix Components:")
+print(f"True Positives (TP): {TP}")
+print(f"True Negatives (TN): {TN}")
+print(f"False Positives (FP): {FP}")
+print(f"False Negatives (FN): {FN}")
+
+# TODO: Create a visualization of the confusion matrix
+import seaborn as sns
+
+conf_matrix = np.array([[TN, FP], [FN, TP]])
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues',
+            xticklabels=['Predicted 0', 'Predicted 1'],
+            yticklabels=['Actual 0', 'Actual 1'])
+plt.title('Confusion Matrix', fontsize=14, fontweight='bold')
+plt.ylabel('Actual Class', fontsize=12)
+plt.xlabel('Predicted Class', fontsize=12)
+plt.tight_layout()
+plt.show()
